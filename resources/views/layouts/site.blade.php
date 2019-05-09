@@ -21,11 +21,11 @@
 
 <!--Header_section-->
 <header id="header_wrapper">
-  
-</header>
-<!--Header_section--> 
+ <!--Header_section--> 
   @yield('header')
-<!--Hero_Section-->
+<!--Hero_Section--> 
+</header>
+
 
   @yield('content')
 
