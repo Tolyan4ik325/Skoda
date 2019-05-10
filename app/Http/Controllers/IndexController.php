@@ -41,13 +41,18 @@ class IndexController extends Controller
 
     		$data = $request->all();
 
-    		Mail::send('site.email', ['data'=>$data], function($message) use ($data) {
+    		$result = Mail::send('site.email', ['data'=>$data], function($message) use ($data) {
 
     			$mail_admin = env('MAIL_ADMIN');
 
-    			$message->from();
+    			$message->from($data['email'], $data['name']);
+    			$message->to($mail_admin)->subject('Question');
 
     		});
+
+    		if($result) {
+    			return redirect()->route('home')->with('status', 'Email is send');
+    		}
 
     		// mail
     	}
