@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use Validator;
+use App\Page;
 
 class PagesAddController extends Controller
 {
@@ -37,7 +38,16 @@ class PagesAddController extends Controller
 
                     }
 
-                    dd($input);
+                    $page = new Page();
+
+                    // $page->unguard();
+
+                    $page->fill($input);
+
+                    if($page->save()) {
+                        return redirect('admin')->with('status', 'Страница добавлена');
+
+                    }
             }
 
 
