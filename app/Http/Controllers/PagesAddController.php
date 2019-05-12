@@ -27,6 +27,10 @@ class PagesAddController extends Controller
                         return redirect()->route('pagesAdd')->withErrors($validator)->withInput();
                     }
 
+                    $file = $request->file('images');
+
+                    $input['images'] = $file->getClientOriginalName();
+
                     dd($input);
             }
 
