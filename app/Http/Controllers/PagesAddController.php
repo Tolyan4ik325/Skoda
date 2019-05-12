@@ -27,12 +27,19 @@ class PagesAddController extends Controller
                         return redirect()->route('pagesAdd')->withErrors($validator)->withInput();
                     }
 
+                    if($request->hasFile('images'))  {
+
                     $file = $request->file('images');
 
                     $input['images'] = $file->getClientOriginalName();
 
+                    $file->move(public_path().'/assets/img', $input['images']);
+
+                    }
+
                     dd($input);
             }
+
 
 
     		if(view()->exists('admin.pages_add')) {
