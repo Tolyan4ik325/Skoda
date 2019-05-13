@@ -44,6 +44,8 @@ class PagesEditController extends Controller
                 $input['images'] = $input['old_images'];
             }
 
+            unset($input['old_images']);
+
         }
 
     	$old = $page->toArray();
