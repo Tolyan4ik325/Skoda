@@ -46,6 +46,12 @@ class PagesEditController extends Controller
 
             unset($input['old_images']);
 
+            $page->fill($input);
+
+            if($page->update()) {
+                return redirect('admin')->with('status', 'Страница обновлена');
+            }
+
         }
 
     	$old = $page->toArray();
