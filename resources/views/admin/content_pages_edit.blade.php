@@ -1,14 +1,15 @@
 <div class="wrapper container-fluid">
 	
-	{!! Form::open(['url'=>route('pagesAdd'), 'class'=>'form-horizontal', 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
+	{!! Form::open(['url'=>route('pagesEdit', array('page'=>$data['id'])), 'class'=>'form-horizontal', 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
 
 		<div class="form-group">
+			{!! Form::hidden('id', $data['id']) !!}
 			
 			{!! Form::label('name', 'Название', ['class' => 'col-xs-2 control-label'])  !!}
 			
 			<div class="col-xs-8">
 				
-				{!! Form::text('name', old('name'), ['class' => 'form-control', 'placeholder'=>'Введите название страницы']) !!}
+				{!! Form::text('name', $data['name'], ['class' => 'form-control', 'placeholder'=>'Введите название страницы']) !!}
 
 			</div>
 
@@ -20,7 +21,7 @@
 			
 			<div class="col-xs-8">
 				
-				{!! Form::text('alias', old('alias'), ['class' => 'form-control', 'placeholder'=>'Введите псевдоним страницы']) !!}
+				{!! Form::text('alias', $data['alias'], ['class' => 'form-control', 'placeholder'=>'Введите псевдоним страницы']) !!}
 
 			</div>
 
@@ -32,11 +33,18 @@
 			
 			<div class="col-xs-8">
 				
-				{!! Form::textarea('text', old('text'), ['id'=>'editor', 'class' => 'form-control', 'placeholder'=>'Введите текст страницы']) !!}
+				{!! Form::textarea('text', $data['text'], ['id'=>'editor', 'class' => 'form-control', 'placeholder'=>'Введите текст страницы']) !!}
 
 			</div>
 
 		</div>
+		<div class="form-group">
+	     {!! Form::label('old_images', 'Изображение:',['class'=>'col-xs-2 control-label']) !!}
+	     <div class="col-xs-8">
+			{!! Html::image('assets/img/'.$data['images'],'',['class'=>'img-circle img-responsive', 'width'=>'150', 'height'=>'150']) !!}
+		 	{!! Form::hidden('old_images',$data['images']) !!}
+		 </div>
+    </div>
 		<div class="form-group">
 	     {!! Form::label('images', 'Изображение:',['class'=>'col-xs-2 control-label']) !!}
 	     <div class="col-xs-8">
