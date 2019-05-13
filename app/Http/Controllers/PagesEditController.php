@@ -16,7 +16,12 @@ class PagesEditController extends Controller
 
     	// $page = Page::find($id);
 
-    	// dd($page);
+    	if($request->isMethod('delete')) {
+
+            $page->delete();
+            return redirect('admin')->with('status', 'Страница удалена');
+
+        }
 
         if($request->isMethod('post')) {
 
